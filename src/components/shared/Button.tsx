@@ -9,7 +9,7 @@ const buttonVariants = cva(
         primary:   "bg-[#E87A1E] text-white hover:bg-[#C4650F] focus-visible:ring-[#E87A1E]",
         secondary: "bg-[#4CAF50] text-white hover:bg-[#3d9140] focus-visible:ring-[#4CAF50]",
         outline:   "border-2 border-[#E87A1E] text-[#E87A1E] bg-transparent hover:bg-[#E87A1E] hover:text-white focus-visible:ring-[#E87A1E]",
-        whatsapp:  "bg-[#25D366] text-white hover:bg-[#1ea854] focus-visible:ring-[#25D366]",
+        whatsapp:  "bg-[#E87A1E] text-white hover:bg-[#C4650F] focus-visible:ring-[#E87A1E]",
         ghost:     "bg-transparent text-current hover:bg-black/10 focus-visible:ring-current",
       },
       size: {

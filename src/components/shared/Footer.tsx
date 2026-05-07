@@ -13,7 +13,6 @@ const GRAIN_URL =
 const navLinks = [
   { label: "Sabores",      href: "/#sabores" },
   { label: "Distribuição", href: "/#distribuicao" },
-  { label: "Eventos",      href: "/eventos" },
   { label: "Contato",      href: "/#contato" },
 ]
 
