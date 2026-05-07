@@ -1,7 +1,6 @@
 "use client"
 
-import Link from "next/link"
-import { MessageCircle, ArrowRight, CalendarDays } from "lucide-react"
+import { MessageCircle, ArrowRight } from "lucide-react"
 import { Container } from "@/components/shared/Container"
 import { SectionWrapper } from "@/components/shared/SectionWrapper"
 import {
@@ -126,23 +125,8 @@ export function CTASection() {
           </div>
         </div>
 
-        {/* Atalhos discretos — eventos + redes */}
-        <div className="mt-10 md:mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 max-w-3xl mx-auto">
-          <Link
-            href="/eventos"
-            className="group inline-flex items-center justify-center gap-2.5 text-sm text-white/70 hover:text-[#ffd36a] transition-colors px-4 py-3 rounded-xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ffd36a]"
-          >
-            <CalendarDays
-              size={16}
-              strokeWidth={2.2}
-              className="text-[#ffd36a]/80 group-hover:text-[#ffd36a]"
-            />
-            <span className="font-semibold">
-              Quero Bang Bang no meu evento
-            </span>
-            <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">→</span>
-          </Link>
-
+        {/* Atalhos discretos — redes */}
+        <div className="mt-10 md:mt-12 flex justify-center max-w-3xl mx-auto">
           <div className="flex items-center justify-center gap-3">
             <span className="text-xs font-semibold tracking-[0.18em] uppercase text-white/55">
               Siga

@@ -4,7 +4,6 @@ import { HeroSection } from "@/components/sections/HeroSection"
 import { MarqueeBanner } from "@/components/sections/MarqueeBanner"
 import { SaboresSection } from "@/components/sections/SaboresSection"
 import { RevendaSection } from "@/components/sections/RevendaSection"
-import { EventosSection } from "@/components/sections/EventosSection"
 import { OndeComprarSection } from "@/components/sections/OndeComprar"
 import { FAQSection } from "@/components/sections/FAQSection"
 import { CTASection } from "@/components/sections/CTASection"
@@ -29,10 +28,6 @@ export default async function Home() {
         {/* 04 — Distribuição + Logística + Parceiros: argumento B2B + ficha
             técnica + prova social, todos na mesma dobra */}
         <RevendaSection />
-
-        {/* 05 — Eventos: pivot B2B — "ative sua marca em eventos" com link
-            discreto pra agenda B2C em /eventos */}
-        <EventosSection />
 
         {/* 06 — Quero Bang Bang na minha cidade: KPIs de capilaridade +
             wishlist form (3 fields). Mapa completo é só admin (/dashboard). */}

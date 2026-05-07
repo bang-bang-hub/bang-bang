@@ -13,7 +13,6 @@ import { trackClick } from "@/lib/contacts/clicks"
 const navLinks = [
   { label: "Sabores",        href: "/#sabores" },
   { label: "Distribuição",   href: "/#distribuicao" },
-  { label: "Eventos",        href: "/eventos" },
   { label: "Seja um Banger", href: "/seja-um-banger" },
   { label: "Contato",        href: "/#contato" },
 ]

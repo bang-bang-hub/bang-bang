@@ -77,22 +77,26 @@ interface MobileCanDef {
   floatDelay: string
 }
 
+// Option B — top-arc layout. All four cans cluster at the top of the hero,
+// arranged as a symmetric fan. Bases land just under the headline so the
+// product is the visual anchor. Headline + CTAs sit above on z-index.
+// Outer cans tilt outward more, inner cans tilt inward less.
 const MOBILE_CANS: MobileCanDef[] = [
-  // Mule — peek off the top-left
+  // Mule — outer left
   { key: "mule",   label: "Moscow Mule",          img: muleImg,
-    widthVw: 42, top: "-24%", left: "-10%", rotate: -22,
+    widthVw: 28, top: "8%", left: "2%", rotate: -18,
     floatDur: "6.4s", floatDelay: "0s" },
-  // Spritz — peek off the top-right
-  { key: "spritz", label: "40+3 Spritz",          img: spritzImg,
-    widthVw: 40, top: "-26%", right: "-8%", rotate: 20,
-    floatDur: "5.8s", floatDelay: "-1.4s" },
-  // Caipi — narrow peek off the left edge, below title
+  // Caipi — inner left
   { key: "caipi",  label: "Caipi Vodka 3 Limões", img: caipiImg,
-    widthVw: 54, top: "46%", left: "-42%", rotate: 16,
+    widthVw: 28, top: "0%", left: "24%", rotate: -6,
     floatDur: "5.4s", floatDelay: "-0.7s" },
-  // Bang — narrow peek off the right edge, below title
+  // Spritz — inner right, mirrored to caipi
+  { key: "spritz", label: "40+3 Spritz",          img: spritzImg,
+    widthVw: 28, top: "0%", right: "24%", rotate: 6,
+    floatDur: "5.8s", floatDelay: "-1.4s" },
+  // Bang — outer right, mirrored to mule
   { key: "bang",   label: "Whisky + Energy",      img: bangImg,
-    widthVw: 52, top: "48%", right: "-44%", rotate: -14,
+    widthVw: 28, top: "8%", right: "2%", rotate: 18,
     floatDur: "6.0s", floatDelay: "-2.1s" },
 ]
 
@@ -289,7 +293,7 @@ export function HeroSection() {
         ))}
 
       {/* Copy block */}
-      <div className="relative z-[5] max-w-full lg:max-w-[46vw] px-6 sm:px-8 lg:px-12 pt-32 md:pt-36 lg:pt-0 lg:absolute lg:left-[6vw] lg:top-1/2 lg:-translate-y-1/2 pointer-events-none">
+      <div className="relative z-[5] max-w-full lg:max-w-[46vw] px-6 sm:px-8 lg:px-12 pt-48 md:pt-52 lg:pt-0 pb-20 md:pb-24 lg:pb-0 lg:absolute lg:left-[6vw] lg:top-1/2 lg:-translate-y-1/2 pointer-events-none">
         <div
           className="inline-flex items-center gap-2.5 text-[11px] sm:text-xs font-semibold tracking-[0.28em] uppercase px-3.5 py-2 rounded-full border border-white/35 bg-white/5 backdrop-blur-md"
         >
@@ -332,10 +336,10 @@ export function HeroSection() {
               onClick={() => trackClick("distribuidor")}
               className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-lg font-black text-sm tracking-[0.12em] uppercase bg-[#E87A1E] text-white shadow-[0_12px_32px_-8px_rgba(232,122,30,0.65)] hover:-translate-y-0.5 hover:bg-[#C4650F] hover:shadow-[0_16px_40px_-10px_rgba(232,122,30,0.85)] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ffd36a] focus-visible:ring-offset-2 focus-visible:ring-offset-[#2a1410]"
             >
-              Sou distribuidor
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.6" aria-hidden="true">
-                <path d="M5 12h14M13 5l7 7-7 7" />
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+                <path d="M12 2C6.486 2 2 6.486 2 12c0 1.756.452 3.475 1.314 4.997L2 22l5.122-1.286A9.95 9.95 0 0 0 12 22c5.514 0 10-4.486 10-10S17.514 2 12 2Zm0 18a7.96 7.96 0 0 1-4.114-1.142l-.295-.176-3.04.763.78-2.96-.193-.305A7.964 7.964 0 0 1 4 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8Zm4.36-5.97c-.241-.121-1.426-.703-1.647-.783-.221-.08-.382-.121-.542.121-.161.241-.621.783-.762.943-.141.161-.281.181-.522.06-.241-.12-1.018-.375-1.939-1.197-.717-.64-1.201-1.43-1.342-1.671-.141-.241-.015-.371.106-.491.109-.108.241-.281.362-.422.121-.141.161-.241.241-.402.08-.161.04-.302-.02-.422-.06-.121-.542-1.305-.742-1.787-.196-.469-.394-.405-.542-.412-.141-.007-.302-.009-.462-.009a.886.886 0 0 0-.642.302c-.221.241-.842.823-.842 2.007 0 1.184.862 2.327.983 2.488.121.161 1.696 2.59 4.107 3.632.574.248 1.022.396 1.371.508.576.183 1.1.157 1.514.095.462-.069 1.426-.583 1.627-1.146.201-.563.201-1.045.141-1.146-.06-.101-.221-.161-.462-.282Z"/>
               </svg>
+              Quero distribuir
             </a>
             <a
               href="#sabores"
