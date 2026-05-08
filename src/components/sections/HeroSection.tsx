@@ -247,7 +247,7 @@ export function HeroSection() {
     <section
       ref={bannerRef}
       id="hero"
-      className="hero relative w-full min-h-[85vh] md:min-h-[90vh] lg:min-h-screen overflow-hidden text-white"
+      className="hero relative w-full min-h-[68vh] md:min-h-[78vh] lg:min-h-screen overflow-hidden text-white"
       style={{
         fontFamily: "var(--font-heading-var), var(--font-body), sans-serif",
         background:
@@ -293,7 +293,7 @@ export function HeroSection() {
         ))}
 
       {/* Copy block */}
-      <div className="relative z-[5] max-w-full lg:max-w-[46vw] px-6 sm:px-8 lg:px-12 pt-48 md:pt-52 lg:pt-0 pb-20 md:pb-24 lg:pb-0 lg:absolute lg:left-[6vw] lg:top-1/2 lg:-translate-y-1/2 pointer-events-none">
+      <div className="relative z-[5] max-w-full lg:max-w-[46vw] px-6 sm:px-8 lg:px-12 pt-32 md:pt-36 lg:pt-0 pb-12 md:pb-16 lg:pb-0 lg:absolute lg:left-[6vw] lg:top-1/2 lg:-translate-y-1/2 pointer-events-none">
         <div
           className="inline-flex items-center gap-2.5 text-[11px] sm:text-xs font-semibold tracking-[0.28em] uppercase px-3.5 py-2 rounded-full border border-white/35 bg-white/5 backdrop-blur-md"
         >
