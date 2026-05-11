@@ -11,10 +11,9 @@ import { useContacts } from "@/lib/contacts/useContacts"
 import { trackClick } from "@/lib/contacts/clicks"
 
 const navLinks = [
-  { label: "Sabores",        href: "/#sabores" },
-  { label: "Distribuição",   href: "/#distribuicao" },
-  { label: "Seja um Banger", href: "/seja-um-banger" },
-  { label: "Contato",        href: "/#contato" },
+  { label: "Sabores",      href: "/#sabores" },
+  { label: "Distribuição", href: "/#distribuicao" },
+  { label: "Contato",      href: "/#contato" },
 ]
 
 export function Header() {

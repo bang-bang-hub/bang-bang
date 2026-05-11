@@ -258,10 +258,12 @@ function SaboresPinned() {
       id="sabores"
       ref={wrapperRef}
       className="relative bg-[#FAFAF8]"
-      style={{ height: `${PRODUCTS.length * 100}vh` }}
+      style={{ height: `${PRODUCTS.length * 130}vh` }}
     >
-      {/* Sticky panel — fills the viewport while the wrapper scrolls past. */}
-      <div className="sticky top-0 h-screen overflow-hidden flex items-center">
+      {/* Sticky panel — fills the viewport while the wrapper scrolls past.
+          The pt clears the fixed Header and the pb keeps the active card's
+          bottom rounded corner away from the section edge. */}
+      <div className="sticky top-0 h-screen overflow-hidden flex items-center pt-20 pb-8 md:pt-20 md:pb-10 lg:pt-20 lg:pb-8">
         <Container className="w-full">
           <SectionTitle
             eyebrow="Catálogo"
@@ -317,7 +319,7 @@ function SaboresInteractiveWithIndex({
   const others = PRODUCTS.filter((p) => p.flavor !== active.flavor)
 
   return (
-    <div className="mt-8 md:mt-10 grid grid-cols-1 lg:grid-cols-[3fr_1.1fr] gap-4 md:gap-6 items-stretch">
+    <div className="mt-2 md:mt-3 mx-auto max-w-full lg:max-w-[1080px] grid grid-cols-1 lg:grid-cols-[3fr_1.1fr] gap-4 md:gap-6 items-stretch">
       {/* Active card — re-keyed by flavor so the can swap fades in cleanly */}
       <ActiveSaborCard key={active.flavor} product={active} />
 
@@ -396,9 +398,10 @@ function SaborStack({
   return (
     <>
       {/* Desktop deck — height matches the active card so the peek stripes
-          line up with it. Capped to the pin viewport. */}
+          line up with it. Uses the same h() formula so the stack and the
+          active card stay perfectly aligned, top and bottom. */}
       <div
-        className="relative hidden lg:block w-full min-h-[520px] max-h-[calc(100vh-180px)]"
+        className="relative hidden lg:block w-full h-[min(100vh-280px,700px)]"
       >
         {flavors.map((p, i) => (
           <StackedSaborCard
@@ -670,9 +673,10 @@ function ActiveSaborCard({ product }: { product: Product }) {
     <article
       className={cn(
         "relative overflow-hidden rounded-2xl text-white",
-        // Capped at the available pin viewport so the can never gets clipped
-        // on shorter screens. The min keeps it readable on the static fallback.
-        "min-h-[480px] md:min-h-[520px] lg:max-h-[calc(100vh-180px)]",
+        // Capped at the available pin viewport so the rounded corners (top
+        // AND bottom) always sit inside the sticky panel without clipping.
+        // SectionTitle eats ~160px, plus we want breathing room above/below.
+        "min-h-[400px] md:min-h-[420px] lg:min-h-0 lg:h-[min(100vh-280px,700px)]",
         "animate-[fadeInScale_400ms_ease-out]",
       )}
       style={{ background: gradient }}
@@ -713,36 +717,36 @@ function ActiveSaborCard({ product }: { product: Product }) {
 
         {/* Right copy block — full text, notes, vol, CTA */}
         <div
-          className="relative flex flex-col justify-center gap-4 px-6 md:px-8 lg:px-10 pb-8 md:pb-10 pt-4 md:pt-12"
+          className="relative flex flex-col justify-center gap-2.5 md:gap-3 px-6 md:px-8 lg:px-10 pb-6 md:pb-7 pt-4 md:pt-8"
           style={{
             background:
               "linear-gradient(to top, rgba(0,0,0,0.45) 10%, rgba(0,0,0,0) 100%)",
           }}
         >
           <h3
-            className="font-black uppercase tracking-tight leading-[0.95] text-white text-2xl md:text-3xl lg:text-4xl"
+            className="font-black uppercase tracking-tight leading-[0.95] text-white text-2xl md:text-3xl"
             style={{ fontFamily: "var(--font-heading-var)", fontWeight: 700 }}
           >
             {name}
           </h3>
 
           <p
-            className="text-[15px] md:text-[17px] font-bold italic leading-snug"
+            className="text-[14px] md:text-[15px] font-bold italic leading-snug"
             style={{ color: dotColor }}
           >
             {tagline}
           </p>
 
-          <p className="text-white/80 text-[14px] md:text-[15px] leading-relaxed max-w-[42ch]">
+          <p className="text-white/80 text-[13px] md:text-[14px] leading-snug max-w-[42ch] line-clamp-3">
             {longDescription}
           </p>
 
           {/* Notes — small chip pills */}
-          <ul className="flex flex-wrap gap-1.5 md:gap-2 mt-1">
+          <ul className="flex flex-wrap gap-1.5 mt-0.5">
             {notes.map((note) => (
               <li
                 key={note}
-                className="inline-flex items-center text-[10px] md:text-[11px] font-bold tracking-[0.12em] uppercase px-2.5 py-1 rounded-md border border-white/20 bg-white/5 backdrop-blur-sm text-white/85"
+                className="inline-flex items-center text-[10px] font-bold tracking-[0.12em] uppercase px-2 py-0.5 rounded-md border border-white/20 bg-white/5 backdrop-blur-sm text-white/85"
               >
                 {note}
               </li>
@@ -750,7 +754,7 @@ function ActiveSaborCard({ product }: { product: Product }) {
           </ul>
 
           {/* Tech specs — B2B distributor info embedded discretely */}
-          <div className="mt-2 pt-4 border-t border-white/15 flex flex-col gap-3">
+          <div className="mt-1 pt-2.5 border-t border-white/15 flex flex-col gap-2">
             <dl className="grid grid-cols-3 gap-2 md:gap-3 text-[10px] md:text-[11px]">
               <div className="flex flex-col gap-0.5 min-w-0">
                 <dt className="font-bold tracking-[0.18em] uppercase text-white/45">EAN</dt>

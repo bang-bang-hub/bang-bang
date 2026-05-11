@@ -219,11 +219,11 @@ export function EventosSection() {
           )}
         </div>
 
-        {/* CTA único — discreto. Captação forte de evento privado vive em
-            /eventos; aqui é só vitrine. */}
+        {/* CTA único — discreto. Aponta para o bloco de contato no fim da
+            home (a página pública de eventos foi removida). */}
         <div className="mt-12 md:mt-16 flex justify-center">
           <Link
-            href="/eventos"
+            href="#contato"
             className="group inline-flex items-center gap-2.5 text-sm text-white/70 hover:text-[#ffd36a] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ffd36a] rounded px-1 -mx-1"
           >
             <CalendarDays
@@ -232,7 +232,7 @@ export function EventosSection() {
               className="text-[#ffd36a]/80 group-hover:text-[#ffd36a]"
             />
             <span className="font-semibold underline underline-offset-4 decoration-[#ffd36a]/40 group-hover:decoration-[#ffd36a]">
-              Agenda completa & briefing de eventos
+              Briefing de eventos — fale com a gente
             </span>
             <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">
               →
