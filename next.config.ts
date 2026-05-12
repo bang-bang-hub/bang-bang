@@ -6,6 +6,10 @@ const nextConfig: NextConfig = {
   // Serve with any static host (Azure SWA, Netlify, Vercel static, etc.).
   output: "export",
 
+  images: {
+    unoptimized: true,
+  },
+
   turbopack: {
     root: __dirname,
   },
