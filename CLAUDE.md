@@ -51,10 +51,11 @@ O `maestro` é o orquestrador. Ver `docs/AGENTS_GUIDE.md`.
 - Tailwind para layout e responsividade
 - Mobile-first em tudo
 - Sem localStorage
-- APIs externas — exceções autorizadas (aprovadas 2026-04-17, dobra Onde Comprar):
+- APIs externas — exceções autorizadas:
   - **Build-time:** ViaCEP (enriquecer logradouro de PDVs Tier B) + Nominatim/OSM (geocoding). Rodam no script manual `npm run pdvs:refresh`, nunca no prebuild de produção.
-  - **Runtime:** ViaCEP (consulta de CEP do usuário em `BuscaRapida`), client-side, sem auth. Deve degradar com mensagem amigável se a API cair.
-  - Qualquer outra API externa precisa de aprovação explícita do Pedro.
+  - **Runtime:** ViaCEP (consulta de CEP do usuário em `WishlistForm`, CEP auto-fill), client-side, sem auth.
+  - Não existe backend runtime — o site é static export (`output: 'export'`). Qualquer nova API runtime precisa de aprovação explícita do Pedro.
+  - Supabase foi removido (2026-05-12). Não reintroduzir sem aprovação.
 - Sem dependências desnecessárias — justificar cada `npm install`
 
 ## Regras Globais de Design
