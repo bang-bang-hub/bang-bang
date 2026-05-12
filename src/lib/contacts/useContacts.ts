@@ -1,7 +1,5 @@
 "use client"
 
-import { useCallback, useEffect, useState } from "react"
-import { createSupabaseBrowserClient } from "@/lib/supabase/client"
 import {
   DEFAULT_CONTACTS,
   MSG_REVENDA,
@@ -53,7 +51,7 @@ export function resolveChannelUrl(customLink: string, phone: string, message = "
 
 export interface UseContactsApi {
   config: ContactsConfig
-  /** Whether a fetch is in progress (initial load). */
+  /** Always false — no async fetch in static export. */
   loading: boolean
   /** Resolved URLs per category — already includes the default message. */
   urls: {
@@ -64,48 +62,35 @@ export interface UseContactsApi {
   hasAnyConfigured: boolean
 }
 
-/** Fetch contact_channels once on mount. RLS allows anonymous SELECT. */
+/**
+ * Returns static contact config for the static export build.
+ *
+ * Phone numbers / custom links are read from NEXT_PUBLIC_* env vars at build
+ * time. Set them in .env.local (or the hosting platform's env config) before
+ * running `next build`.
+ *
+ * Example .env.local:
+ *   NEXT_PUBLIC_WA_REVENDA=5531999999999
+ *   NEXT_PUBLIC_WA_DISTRIBUIDOR=5531988888888
+ *   NEXT_PUBLIC_WA_EVENTOS=5531977777777
+ */
 export function useContacts(): UseContactsApi {
-  const [config, setConfig] = useState<ContactsConfig>(DEFAULT_CONTACTS)
-  const [loading, setLoading] = useState(true)
-
-  const fetchChannels = useCallback(async () => {
-    const supabase = createSupabaseBrowserClient()
-    const { data, error } = await supabase
-      .from("contact_channels")
-      .select(
-        "whatsapp_revenda, whatsapp_distribuidor, whatsapp_eventos, link_revenda, link_distribuidor, link_eventos",
-      )
-      .single()
-
-    if (!error && data) {
-      setConfig({
-        whatsappRevenda: data.whatsapp_revenda,
-        whatsappDistribuidor: data.whatsapp_distribuidor,
-        whatsappEventos: data.whatsapp_eventos,
-        linkRevenda: data.link_revenda,
-        linkDistribuidor: data.link_distribuidor,
-        linkEventos: data.link_eventos,
-      })
-    }
-    setLoading(false)
-  }, [])
-
-  useEffect(() => {
-    // Fetch the singleton row on mount. setState inside an async chain is
-    // legit here — we're syncing external (Supabase) state into React state,
-    // which is exactly what useEffect is for.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    void fetchChannels()
-  }, [fetchChannels])
+  const config: ContactsConfig = {
+    whatsappRevenda:     process.env.NEXT_PUBLIC_WA_REVENDA     ?? DEFAULT_CONTACTS.whatsappRevenda,
+    whatsappDistribuidor: process.env.NEXT_PUBLIC_WA_DISTRIBUIDOR ?? DEFAULT_CONTACTS.whatsappDistribuidor,
+    whatsappEventos:     process.env.NEXT_PUBLIC_WA_EVENTOS     ?? DEFAULT_CONTACTS.whatsappEventos,
+    linkRevenda:         process.env.NEXT_PUBLIC_LINK_REVENDA   ?? DEFAULT_CONTACTS.linkRevenda,
+    linkDistribuidor:    process.env.NEXT_PUBLIC_LINK_DISTRIBUIDOR ?? DEFAULT_CONTACTS.linkDistribuidor,
+    linkEventos:         process.env.NEXT_PUBLIC_LINK_EVENTOS   ?? DEFAULT_CONTACTS.linkEventos,
+  }
 
   const urls = {
-    revenda: resolveChannelUrl(config.linkRevenda, config.whatsappRevenda, MSG_REVENDA),
+    revenda:      resolveChannelUrl(config.linkRevenda,      config.whatsappRevenda,      MSG_REVENDA),
     distribuidor: resolveChannelUrl(config.linkDistribuidor, config.whatsappDistribuidor, MSG_DISTRIBUIDOR),
-    eventos: resolveChannelUrl(config.linkEventos, config.whatsappEventos, MSG_EVENTOS),
+    eventos:      resolveChannelUrl(config.linkEventos,      config.whatsappEventos,      MSG_EVENTOS),
   }
 
   const hasAnyConfigured = Boolean(urls.revenda || urls.distribuidor || urls.eventos)
 
-  return { config, loading, urls, hasAnyConfigured }
+  return { config, loading: false, urls, hasAnyConfigured }
 }

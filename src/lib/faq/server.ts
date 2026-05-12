@@ -1,35 +1,14 @@
-import { createSupabaseServerClient } from "@/lib/supabase/server"
-import { DEFAULT_FAQ, MAX_FAQ_ITEMS, type FAQItem } from "./config"
+import { DEFAULT_FAQ, type FAQItem } from "./config"
 
-/** Fetch all FAQ items ordered by position. Falls back to defaults on error. */
+/**
+ * Returns the static FAQ items for the static export build.
+ *
+ * The original implementation fetched from Supabase (faq_items table) and
+ * fell back to DEFAULT_FAQ on error. With static export there is no server
+ * runtime, so we always return the hardcoded defaults directly.
+ *
+ * To update FAQ content: edit DEFAULT_FAQ in ./config.ts and rebuild.
+ */
 export async function getFaqItems(): Promise<FAQItem[]> {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL
-  if (
-    !url ||
-    !process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
-    url.includes("127.0.0.1") ||
-    url.includes("localhost")
-  ) {
-    return DEFAULT_FAQ
-  }
-  try {
-    const supabase = await createSupabaseServerClient()
-
-    const { data, error } = await supabase
-      .from("faq_items")
-      .select("id, question, answer, position, updated_at")
-      .order("position", { ascending: true })
-      .limit(MAX_FAQ_ITEMS)
-
-    if (error || !data || data.length === 0) return DEFAULT_FAQ
-
-    return data.map((row) => ({
-      id: row.id as string,
-      question: row.question as string,
-      answer: row.answer as string,
-      position: row.position as number,
-    }))
-  } catch {
-    return DEFAULT_FAQ
-  }
+  return DEFAULT_FAQ
 }

@@ -1,6 +1,5 @@
 "use client"
 
-import Link from "next/link"
 import { Button } from "@/components/shared/Button"
 import { Logo } from "@/components/shared/Logo"
 import { InstagramIcon, TikTokIcon } from "@/components/shared/icons/SocialIcons"
@@ -135,13 +134,6 @@ export function Footer() {
           </p>
           <div className="flex items-center gap-3">
             <p>CNPJ: a confirmar</p>
-            <span className="text-[#FAFAF8]/20" aria-hidden="true">·</span>
-            <Link
-              href="/login"
-              className="text-[#FAFAF8]/40 hover:text-[#ffd36a] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ffd36a] rounded"
-            >
-              Acesso staff
-            </Link>
           </div>
         </div>
       </div>
