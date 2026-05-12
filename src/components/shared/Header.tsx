@@ -157,16 +157,7 @@ export function Header() {
           </Button>
         </div>
 
-        {/* Staff access — intentionally discreet. Absolute bottom so the main
-            nav stays visually centered, low contrast so it doesn't compete
-            with the consumer/partner CTAs above. */}
-        <Link
-          href="/dashboard"
-          onClick={closeMobileMenu}
-          className="absolute bottom-6 left-1/2 -translate-x-1/2 text-[10px] font-semibold tracking-[0.3em] uppercase text-white/30 hover:text-white/70 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ffd36a] rounded px-2 py-1"
-        >
-          Acesso staff
-        </Link>
+        {/* Staff access link removed — dashboard route deleted in static-export refactor */}
       </div>
     </>
   )

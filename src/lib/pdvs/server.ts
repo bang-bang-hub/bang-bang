@@ -1,11 +1,16 @@
 import basePDVsJson from "@/data/pdvs.json"
 import type { PDV, PDVsByUF, UF } from "@/lib/types/pdv"
-import { getPDVOverrides } from "./overrides-server"
 
-// Server-side merge of the build-time pdvs.json with the dashboard overrides
-// stored in Supabase. Use from Server Components (home, /onde-encontrar) so
-// staff edits are visible to the public the moment they're saved, without
-// waiting for a redeploy.
+/**
+ * Returns the build-time PDV dataset for the static export build.
+ *
+ * The original implementation merged the base JSON with dashboard overrides
+ * stored in Supabase (pdv_overrides table). With static export there is no
+ * server runtime, so we serve the JSON directly as produced by `pdvs:refresh`.
+ *
+ * To update the PDV list: edit data/pdvs_bang_bang.xlsx and run
+ * `npm run pdvs:refresh`, then rebuild.
+ */
 
 const BASE = basePDVsJson as PDV[]
 
@@ -15,24 +20,11 @@ interface MergedPDVs {
 }
 
 export async function getMergedPDVs(): Promise<MergedPDVs> {
-  const overrides = await getPDVOverrides()
-  const deleted = new Set(overrides.deletedIds)
-
-  const merged: PDV[] = []
-  for (const base of BASE) {
-    if (deleted.has(base.id)) continue
-    const patch = overrides.edited[base.id]
-    merged.push(patch ? { ...base, ...patch } : base)
-  }
-  for (const added of overrides.added) {
-    if (!deleted.has(added.id)) merged.push(added)
-  }
-
   const counts = new Map<UF, number>()
-  for (const p of merged) counts.set(p.uf, (counts.get(p.uf) ?? 0) + 1)
+  for (const p of BASE) counts.set(p.uf, (counts.get(p.uf) ?? 0) + 1)
   const activeUfs: PDVsByUF[] = [...counts.entries()]
     .map(([uf, count]) => ({ uf, count }))
     .sort((a, b) => b.count - a.count)
 
-  return { pdvs: merged, activeUfs }
+  return { pdvs: BASE, activeUfs }
 }
