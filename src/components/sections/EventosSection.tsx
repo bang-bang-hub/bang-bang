@@ -1,11 +1,13 @@
 "use client"
 
 import Image, { type StaticImageData } from "next/image"
-import Link from "next/link"
-import { CalendarDays } from "lucide-react"
+import { CalendarDays, Download } from "lucide-react"
+import { Button } from "@/components/shared/Button"
 import { Container } from "@/components/shared/Container"
 import { SectionWrapper } from "@/components/shared/SectionWrapper"
 import { HeroSparks } from "@/components/shared/HeroSparks"
+import { useContacts } from "@/lib/contacts/useContacts"
+import { trackClick } from "@/lib/contacts/clicks"
 import evento01 from "@/../public/images/eventos/evento-01.webp"
 import evento02 from "@/../public/images/eventos/evento-02.webp"
 import evento03 from "@/../public/images/eventos/evento-03.webp"
@@ -130,6 +132,9 @@ function TextBlock({ title, description }: { title: string; description: string 
 }
 
 export function EventosSection() {
+  const { urls } = useContacts()
+  const eventosHref = urls.eventos || "#contato"
+
   return (
     <SectionWrapper
       id="eventos"
@@ -219,25 +224,27 @@ export function EventosSection() {
           )}
         </div>
 
-        {/* CTA único — discreto. Aponta para o bloco de contato no fim da
-            home (a página pública de eventos foi removida). */}
-        <div className="mt-12 md:mt-16 flex justify-center">
-          <Link
-            href="#contato"
-            className="group inline-flex items-center gap-2.5 text-sm text-white/70 hover:text-[#ffd36a] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ffd36a] rounded px-1 -mx-1"
+        {/* Dois CTAs: ação primária leva ao bloco de contato; secundária baixa
+            a apresentação comercial (placeholder até o design final chegar). */}
+        <div className="mt-12 md:mt-16 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+          <Button
+            href={eventosHref}
+            variant="primary"
+            size="md"
+            icon={<CalendarDays size={18} strokeWidth={2.2} />}
+            onClick={() => trackClick("eventos")}
           >
-            <CalendarDays
-              size={14}
-              strokeWidth={2.2}
-              className="text-[#ffd36a]/80 group-hover:text-[#ffd36a]"
-            />
-            <span className="font-semibold underline underline-offset-4 decoration-[#ffd36a]/40 group-hover:decoration-[#ffd36a]">
-              Briefing de eventos — fale com a gente
-            </span>
-            <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">
-              →
-            </span>
-          </Link>
+            Quero no meu Evento
+          </Button>
+          <Button
+            href="/apresentacao-eventos.pdf"
+            variant="outline"
+            size="md"
+            icon={<Download size={18} strokeWidth={2.2} />}
+            className="border-white/70 text-white hover:bg-white hover:text-[#1f0d08] focus-visible:ring-white"
+          >
+            Baixar Apresentação
+          </Button>
         </div>
       </Container>
     </SectionWrapper>

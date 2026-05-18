@@ -1,177 +1,22 @@
-import type { ReactNode } from "react"
+import Image from "next/image"
 import { Container } from "@/components/shared/Container"
 import { SectionWrapper } from "@/components/shared/SectionWrapper"
 
-// Mock "logos" — flat-color symbolic placeholders until the real brand marks arrive.
-// Each one uses a distinct color + shape + typographic treatment so the carousel
-// rhythm mirrors what a row of real logos will look like.
-
 type PartnerLogo = {
   name: string
-  render: () => ReactNode
+  src: string
 }
 
 const LOGOS: PartnerLogo[] = [
-  {
-    name: "Farid Supermercados",
-    render: () => (
-      <div className="h-12 px-3.5 flex items-center gap-2.5 rounded-lg bg-[#1F5E3A] text-white">
-        <div className="w-8 h-8 rounded-md bg-white/15 flex items-center justify-center font-black italic text-base leading-none">
-          F
-        </div>
-        <div className="flex flex-col items-start leading-none gap-0.5">
-          <span className="font-black italic text-[14px] tracking-tight">Farid</span>
-          <span className="text-[8px] tracking-[0.24em] uppercase opacity-70">Supermercados</span>
-        </div>
-      </div>
-    ),
-  },
-  {
-    name: "Mercado Espeto Bar",
-    render: () => (
-      <div className="h-12 pl-2 pr-4 flex items-center gap-2.5 rounded-full bg-[#B33B2E] text-white">
-        <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center font-black text-[11px] leading-none">
-          ME
-        </div>
-        <div className="flex flex-col items-start leading-none gap-0.5">
-          <span className="text-[11px] tracking-[0.2em] uppercase font-black">Mercado</span>
-          <span className="text-[8px] tracking-[0.24em] uppercase opacity-80">Espeto Bar</span>
-        </div>
-      </div>
-    ),
-  },
-  {
-    name: "Bhzão",
-    render: () => (
-      <div className="h-12 pr-3 flex items-center gap-2">
-        <div className="w-11 h-11 rounded-full bg-[#1E3A8A] text-white flex items-center justify-center font-black italic text-[17px] leading-none">
-          Bh
-        </div>
-        <span className="font-black italic text-[#1E3A8A] text-[17px] tracking-tight">
-          Bhzão
-        </span>
-      </div>
-    ),
-  },
-  {
-    name: "DOS3 Distribuidora",
-    render: () => (
-      <div className="h-12 px-3.5 flex items-center gap-2 rounded-lg bg-[#F2A71F]">
-        <div className="flex items-baseline font-black text-[#2a1410] leading-none">
-          <span className="text-[22px] tracking-tight">DOS</span>
-          <span className="text-[11px] ml-0.5 -translate-y-2 font-black">3</span>
-        </div>
-        <span className="text-[8px] tracking-[0.26em] uppercase text-[#2a1410]/80 font-black">
-          Distrib.
-        </span>
-      </div>
-    ),
-  },
-  {
-    name: "Granezzo Distribuidora",
-    render: () => (
-      <div className="h-12 px-4 flex items-center rounded-full border-2 border-[#0F3D1A] bg-[#0F3D1A]/5 text-[#0F3D1A]">
-        <div className="flex flex-col leading-none gap-0.5 items-start">
-          <span className="font-black text-[14px] tracking-[0.08em] uppercase">
-            Granezzo
-          </span>
-          <span className="text-[7px] tracking-[0.3em] uppercase opacity-70 font-black">
-            Distribuidora
-          </span>
-        </div>
-      </div>
-    ),
-  },
-  {
-    name: "Empório Sanders",
-    render: () => (
-      <div className="h-12 px-4 flex items-center gap-2 rounded-md bg-[#1a0f0a] text-[#F2A71F]">
-        <span className="text-[20px] font-black italic leading-none tracking-tight">
-          Sanders
-        </span>
-        <span className="text-[8px] tracking-[0.28em] uppercase opacity-65 font-bold">
-          Empório
-        </span>
-      </div>
-    ),
-  },
-  {
-    name: "Pituba Mart",
-    render: () => (
-      <div className="h-12 pl-2 pr-4 flex items-center gap-2 rounded-full bg-[#0EA5A4] text-white">
-        <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center font-black italic text-[15px] leading-none">
-          P
-        </div>
-        <div className="flex flex-col items-start leading-none gap-0.5">
-          <span className="text-[12px] tracking-[0.18em] uppercase font-black">Pituba</span>
-          <span className="text-[8px] tracking-[0.24em] uppercase opacity-80">Mart</span>
-        </div>
-      </div>
-    ),
-  },
-  {
-    name: "Casa Verde Conveniência",
-    render: () => (
-      <div className="h-12 px-4 flex items-center gap-2.5 rounded-xl bg-white border border-[#0F3D1A]/15 text-[#0F3D1A]">
-        <div className="w-2.5 h-2.5 rounded-full bg-[#0F3D1A]" />
-        <div className="flex flex-col items-start leading-none gap-0.5">
-          <span className="text-[13px] font-black tracking-tight">Casa Verde</span>
-          <span className="text-[8px] tracking-[0.26em] uppercase opacity-65 font-bold">
-            Conveniência
-          </span>
-        </div>
-      </div>
-    ),
-  },
-  {
-    name: "Mercadão Único",
-    render: () => (
-      <div
-        className="h-12 px-4 flex items-center rounded-lg text-white"
-        style={{
-          background:
-            "linear-gradient(135deg, #C4650F 0%, #E87A1E 60%, #F2A71F 100%)",
-        }}
-      >
-        <span className="text-[16px] font-black italic leading-none tracking-tight">
-          Mercadão
-        </span>
-        <span className="ml-1.5 text-[16px] font-black leading-none">Único</span>
-      </div>
-    ),
-  },
-  {
-    name: "Rota 7 Distribuidora",
-    render: () => (
-      <div className="h-12 px-3 flex items-center gap-2.5 text-[#1A1A1A]">
-        <div className="w-10 h-10 rotate-45 bg-[#FFD600] flex items-center justify-center">
-          <span className="-rotate-45 font-black text-[15px] tracking-tight">7</span>
-        </div>
-        <div className="flex flex-col items-start leading-none gap-0.5">
-          <span className="text-[14px] font-black tracking-[0.06em] uppercase">Rota</span>
-          <span className="text-[8px] tracking-[0.28em] uppercase opacity-65 font-bold">
-            Distribuidora
-          </span>
-        </div>
-      </div>
-    ),
-  },
-  {
-    name: "Beer Express",
-    render: () => (
-      <div className="h-12 px-4 flex items-center rounded-md bg-[#7C2D12] text-[#FBBF24]">
-        <span
-          className="text-[15px] font-black uppercase tracking-[0.18em] leading-none"
-          style={{ textShadow: "1px 1px 0 rgba(0,0,0,0.3)" }}
-        >
-          Beer
-        </span>
-        <span className="ml-1 text-[15px] font-black uppercase tracking-[0.18em] leading-none text-white">
-          Express
-        </span>
-      </div>
-    ),
-  },
+  { name: "Farid Supermercados",     src: "/images/parceiros/farid.png" },
+  { name: "Bhzão Atacado & Varejo",  src: "/images/parceiros/bhzao.png" },
+  { name: "DOS3 Distribuidora",      src: "/images/parceiros/dos3.png" },
+  { name: "Farnezze Supermercados",  src: "/images/parceiros/farnezze.png" },
+  { name: "Magnatas Distribuidora",  src: "/images/parceiros/magnatas.png" },
+  { name: "Alasca Bebidas",          src: "/images/parceiros/alasca.png" },
+  { name: "Nova Contagem Supermercados", src: "/images/parceiros/nova-contagem.png" },
+  { name: "NaFaixa",                 src: "/images/parceiros/na-faixa.png" },
+  { name: "Paulão Beer",             src: "/images/parceiros/paulao.png" },
 ]
 
 // Double the list so the CSS marquee (translateX 0 → -50%) loops seamlessly.
@@ -241,12 +86,16 @@ export function ParceirosBlock({
           {DOUBLED.map((logo, i) => (
             <div
               key={`${logo.name}-${i}`}
-              className="shrink-0"
-              role="img"
-              aria-label={logo.name}
+              className="relative shrink-0 h-16 md:h-20 w-32 md:w-40"
               {...(i >= LOGOS.length ? { "aria-hidden": true } : {})}
             >
-              {logo.render()}
+              <Image
+                src={logo.src}
+                alt={logo.name}
+                fill
+                sizes="(max-width: 768px) 128px, 160px"
+                className="object-contain"
+              />
             </div>
           ))}
         </div>

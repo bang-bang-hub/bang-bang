@@ -29,6 +29,7 @@ export const DEFAULT_CONTACTS: ContactsConfig = {
 }
 
 // Pre-fill messages live in code — staff doesn't need to edit these.
-export const MSG_REVENDA = "Olá! Quero revender Bang Bang."
-export const MSG_DISTRIBUIDOR = "Olá! Quero conversar sobre distribuição Bang Bang."
-export const MSG_EVENTOS = "Olá! Quero Bang Bang no meu evento."
+// "Vim pelo site" sinaliza origem para o time comercial filtrar lead.
+export const MSG_REVENDA = "Olá! Vim pelo site da Bang Bang e quero revender."
+export const MSG_DISTRIBUIDOR = "Olá! Vim pelo site da Bang Bang e quero conversar sobre distribuição."
+export const MSG_EVENTOS = "Olá! Vim pelo site da Bang Bang e quero levar pro meu evento."
