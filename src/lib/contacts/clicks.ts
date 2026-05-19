@@ -7,7 +7,7 @@
  * RevendaSection, HeroSection) continue to compile without modification.
  */
 
-export type CTACategory = "revenda" | "distribuidor" | "eventos"
+export type CTACategory = "revenda" | "distribuidor" | "eventos" | "cidade"
 
 /** No-op. Replace with your analytics provider when ready. */
 export function trackClick(_category: CTACategory): void {
