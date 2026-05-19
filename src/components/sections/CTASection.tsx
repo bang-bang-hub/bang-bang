@@ -3,10 +3,6 @@
 import { MessageCircle, ArrowRight } from "lucide-react"
 import { Container } from "@/components/shared/Container"
 import { SectionWrapper } from "@/components/shared/SectionWrapper"
-import {
-  InstagramIcon,
-  TikTokIcon,
-} from "@/components/shared/icons/SocialIcons"
 import { useContacts } from "@/lib/contacts/useContacts"
 import { trackClick } from "@/lib/contacts/clicks"
 
@@ -118,40 +114,13 @@ export function CTASection() {
                 onClick={() => trackClick("distribuidor")}
                 className="inline-flex items-center justify-center gap-2.5 px-6 h-12 rounded-lg font-black text-sm tracking-[0.12em] uppercase bg-[#E87A1E] text-white shadow-[0_12px_32px_-8px_rgba(232,122,30,0.65)] hover:-translate-y-0.5 hover:bg-[#C4650F] hover:shadow-[0_16px_40px_-10px_rgba(232,122,30,0.85)] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ffd36a] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1f0d08] shrink-0"
               >
-                Falar com comercial
+                Quero Distribuir
                 <ArrowRight size={14} strokeWidth={2.6} />
               </a>
             </div>
           </div>
         </div>
 
-        {/* Atalhos discretos — redes */}
-        <div className="mt-10 md:mt-12 flex justify-center max-w-3xl mx-auto">
-          <div className="flex items-center justify-center gap-3">
-            <span className="text-xs font-semibold tracking-[0.18em] uppercase text-white/55">
-              Siga
-            </span>
-            <a
-              href="https://www.instagram.com/bebabangbang"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram @bebabangbang"
-              className="w-10 h-10 rounded-full flex items-center justify-center border border-white/15 bg-white/5 text-white/70 hover:text-[#ffd36a] hover:border-white/35 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ffd36a]"
-            >
-              <InstagramIcon size={18} />
-            </a>
-            <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="TikTok Bang Bang"
-              className="w-10 h-10 rounded-full flex items-center justify-center border border-white/15 bg-white/5 text-white/70 hover:text-[#ffd36a] hover:border-white/35 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ffd36a]"
-            >
-              <TikTokIcon size={18} />
-            </a>
-            <span className="text-xs text-white/45 ml-1">@bebabangbang</span>
-          </div>
-        </div>
       </Container>
     </SectionWrapper>
   )

@@ -6,7 +6,6 @@ import {
   Award,
   Megaphone,
   MessageCircle,
-  Download,
   Boxes,
 } from "lucide-react"
 import { Button } from "@/components/shared/Button"
@@ -154,15 +153,6 @@ function LogisticaBlock() {
           </div>
         </div>
 
-        <a
-          href="/lamina-comercial.pdf"
-          download
-          onClick={() => trackClick("distribuidor")}
-          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-xs font-bold tracking-[0.12em] uppercase text-[#1A1A1A] border border-[#4A2C1A]/20 bg-white hover:border-[#E87A1E] hover:text-[#E87A1E] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E87A1E] focus-visible:ring-offset-2 self-start md:self-auto"
-        >
-          <Download size={14} strokeWidth={2.4} />
-          Baixar ficha completa (PDF)
-        </a>
       </div>
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mb-6">
@@ -213,7 +203,7 @@ export function RevendaSection() {
             icon={<MessageCircle size={18} />}
             onClick={() => trackClick("distribuidor")}
           >
-            Quero distribuir
+            Quero Distribuir
           </Button>
         </div>
 

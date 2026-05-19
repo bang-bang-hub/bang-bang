@@ -5,6 +5,7 @@ import {
   MSG_REVENDA,
   MSG_DISTRIBUIDOR,
   MSG_EVENTOS,
+  MSG_CIDADE,
   type ContactsConfig,
 } from "./config"
 
@@ -58,6 +59,7 @@ export interface UseContactsApi {
     revenda: string
     distribuidor: string
     eventos: string
+    cidade: string
   }
   hasAnyConfigured: boolean
 }
@@ -79,18 +81,21 @@ export function useContacts(): UseContactsApi {
     whatsappRevenda:     process.env.NEXT_PUBLIC_WA_REVENDA     ?? DEFAULT_CONTACTS.whatsappRevenda,
     whatsappDistribuidor: process.env.NEXT_PUBLIC_WA_DISTRIBUIDOR ?? DEFAULT_CONTACTS.whatsappDistribuidor,
     whatsappEventos:     process.env.NEXT_PUBLIC_WA_EVENTOS     ?? DEFAULT_CONTACTS.whatsappEventos,
+    whatsappCidade:      process.env.NEXT_PUBLIC_WA_CIDADE      ?? DEFAULT_CONTACTS.whatsappCidade,
     linkRevenda:         process.env.NEXT_PUBLIC_LINK_REVENDA   ?? DEFAULT_CONTACTS.linkRevenda,
     linkDistribuidor:    process.env.NEXT_PUBLIC_LINK_DISTRIBUIDOR ?? DEFAULT_CONTACTS.linkDistribuidor,
     linkEventos:         process.env.NEXT_PUBLIC_LINK_EVENTOS   ?? DEFAULT_CONTACTS.linkEventos,
+    linkCidade:          process.env.NEXT_PUBLIC_LINK_CIDADE    ?? DEFAULT_CONTACTS.linkCidade,
   }
 
   const urls = {
     revenda:      resolveChannelUrl(config.linkRevenda,      config.whatsappRevenda,      MSG_REVENDA),
     distribuidor: resolveChannelUrl(config.linkDistribuidor, config.whatsappDistribuidor, MSG_DISTRIBUIDOR),
     eventos:      resolveChannelUrl(config.linkEventos,      config.whatsappEventos,      MSG_EVENTOS),
+    cidade:       resolveChannelUrl(config.linkCidade,       config.whatsappCidade,       MSG_CIDADE),
   }
 
-  const hasAnyConfigured = Boolean(urls.revenda || urls.distribuidor || urls.eventos)
+  const hasAnyConfigured = Boolean(urls.revenda || urls.distribuidor || urls.eventos || urls.cidade)
 
   return { config, loading: false, urls, hasAnyConfigured }
 }

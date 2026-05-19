@@ -103,7 +103,7 @@ export function Header() {
               href={distribuidorHref}
               onClick={() => trackClick("distribuidor")}
             >
-              Sou distribuidor
+              Quero Distribuir
             </Button>
           </div>
 
@@ -153,7 +153,7 @@ export function Header() {
             }}
             className="min-w-[220px] justify-center"
           >
-            Sou distribuidor
+            Quero Distribuir
           </Button>
         </div>
 

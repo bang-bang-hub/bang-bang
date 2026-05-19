@@ -158,16 +158,6 @@ export async function FAQSection() {
             {/* Client accordion — interactivity requires "use client" */}
             <FAQAccordion items={items} />
           </div>
-
-          <p className="text-center text-[#4A2C1A]/60 text-sm mt-8">
-            Não achou sua pergunta?{" "}
-            <a
-              href="#contato"
-              className="font-semibold text-[#E87A1E] hover:text-[#C4650F] underline underline-offset-4"
-            >
-              Fala com a gente →
-            </a>
-          </p>
         </div>
       </Container>
     </SectionWrapper>

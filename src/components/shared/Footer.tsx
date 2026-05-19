@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/shared/Button"
 import { Logo } from "@/components/shared/Logo"
-import { InstagramIcon, TikTokIcon } from "@/components/shared/icons/SocialIcons"
+import { InstagramIcon } from "@/components/shared/icons/SocialIcons"
 import { useContacts } from "@/lib/contacts/useContacts"
 import { trackClick } from "@/lib/contacts/clicks"
 
@@ -17,7 +17,7 @@ const navLinks = [
 
 export function Footer() {
   const { urls } = useContacts()
-  const revendaHref = urls.revenda || "#contato"
+  const distribuidorHref = urls.distribuidor || "#contato"
 
   return (
     <footer
@@ -54,15 +54,6 @@ export function Footer() {
                 aria-label="Instagram @bebabangbang"
               >
                 <InstagramIcon size={18} />
-              </a>
-              <a
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full flex items-center justify-center border border-white/15 bg-white/5 text-white/70 backdrop-blur-sm hover:text-[#ffd36a] hover:border-white/35 transition-colors"
-                aria-label="TikTok Bang Bang"
-              >
-                <TikTokIcon size={18} />
               </a>
             </div>
 
@@ -106,22 +97,35 @@ export function Footer() {
             <div className="flex flex-col gap-2 text-sm text-[#FAFAF8]/70">
               <p>
                 WhatsApp:{" "}
-                <span className="text-[#FAFAF8]/40 italic">em breve</span>
+                <a
+                  href={distribuidorHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackClick("distribuidor")}
+                  className="text-[#FAFAF8] hover:text-[#ffd36a] transition-colors underline underline-offset-4 decoration-[#FAFAF8]/30 hover:decoration-[#ffd36a]"
+                >
+                  (31) 99824-2682
+                </a>
               </p>
               <p>
                 E-mail:{" "}
-                <span className="text-[#FAFAF8]/40 italic">em breve</span>
+                <a
+                  href="mailto:contato@bebabangbang.com.br"
+                  className="text-[#FAFAF8] hover:text-[#ffd36a] transition-colors underline underline-offset-4 decoration-[#FAFAF8]/30 hover:decoration-[#ffd36a]"
+                >
+                  contato@bebabangbang.com.br
+                </a>
               </p>
             </div>
 
             <Button
               variant="whatsapp"
               size="sm"
-              href={revendaHref}
-              onClick={() => trackClick("revenda")}
+              href={distribuidorHref}
+              onClick={() => trackClick("distribuidor")}
               className="mt-2 self-start"
             >
-              Quero revender
+              Quero Distribuir
             </Button>
           </div>
         </div>
@@ -133,7 +137,7 @@ export function Footer() {
             Beba com moderação. Venda proibida para menores de 18 anos.
           </p>
           <div className="flex items-center gap-3">
-            <p>CNPJ: a confirmar</p>
+            <p>CNPJ: 63.442.125/0001-91</p>
           </div>
         </div>
       </div>

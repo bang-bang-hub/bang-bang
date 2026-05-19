@@ -53,7 +53,7 @@ export function OndeEncontrarBody({ pdvs }: OndeEncontrarBodyProps) {
       <section className="bg-[#FAFAF8] py-16 md:py-24 border-t border-[#4A2C1A]/8">
         <Container>
           <div ref={formRef}>
-            <WishlistForm highlighted={false} prefill={null} />
+            <WishlistForm highlighted={false} />
           </div>
         </Container>
       </section>
