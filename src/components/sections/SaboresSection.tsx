@@ -8,7 +8,6 @@ import {
   useCallback,
 } from "react"
 import Image, { type StaticImageData } from "next/image"
-import { ArrowRight, Download } from "lucide-react"
 import { Container } from "@/components/shared/Container"
 import { SectionWrapper } from "@/components/shared/SectionWrapper"
 import { SectionTitle } from "@/components/shared/SectionTitle"
@@ -315,8 +314,12 @@ function SaboresInteractiveWithIndex({
   onSelect: (key: FlavorKey) => void
 }) {
   const active = PRODUCTS[activeIdx] ?? PRODUCTS[0]
-  // Preserve original order for the stack so users keep visual anchoring.
-  const others = PRODUCTS.filter((p) => p.flavor !== active.flavor)
+  // Stack rotativo — comeca no proximo sabor (wrap-around) pra evidenciar
+  // ordem de leitura conforme o scroll avanca. Antes ficava fixo no Caipi.
+  const others = [
+    ...PRODUCTS.slice(activeIdx + 1),
+    ...PRODUCTS.slice(0, activeIdx),
+  ]
 
   return (
     <div className="mt-2 md:mt-3 mx-auto max-w-full lg:max-w-[1080px] grid grid-cols-1 lg:grid-cols-[3fr_1.1fr] gap-4 md:gap-6 items-stretch">
@@ -621,13 +624,7 @@ function StackedSaborCard({
       {/* Name footer — anchored right so it sits on the peek stripe of back
           cards (rotated vertical for legibility on the narrow stripe). */}
       {isFront ? (
-        <div
-          className="absolute inset-x-0 bottom-0 px-4 pb-4 pt-6"
-          style={{
-            background:
-              "linear-gradient(to top, rgba(0,0,0,0.55) 30%, rgba(0,0,0,0) 100%)",
-          }}
-        >
+        <div className="absolute inset-x-0 bottom-0 px-4 pb-4 pt-6">
           <p
             className="font-black uppercase text-white text-[12px] md:text-[14px] leading-tight tracking-tight line-clamp-2"
             style={{ fontFamily: "var(--font-heading-var)", fontWeight: 700 }}
@@ -755,44 +752,31 @@ function ActiveSaborCard({ product }: { product: Product }) {
 
           {/* Tech specs — B2B distributor info embedded discretely */}
           <div className="mt-1 pt-2.5 border-t border-white/15 flex flex-col gap-2">
-            <dl className="grid grid-cols-3 gap-2 md:gap-3 text-[10px] md:text-[11px]">
-              <div className="flex flex-col gap-0.5 min-w-0">
+            <dl className="grid grid-cols-3 gap-2 md:gap-3 text-[9px] md:text-[10px]">
+              <div className="flex flex-col gap-0.5">
                 <dt className="font-bold tracking-[0.18em] uppercase text-white/45">EAN</dt>
-                <dd className="font-mono font-semibold text-white/85 tabular-nums truncate">
+                <dd className="font-mono font-semibold text-white/85 tabular-nums whitespace-nowrap">
                   {ean}
                 </dd>
               </div>
-              <div className="flex flex-col gap-0.5 min-w-0">
+              <div className="flex flex-col gap-0.5">
                 <dt className="font-bold tracking-[0.18em] uppercase text-white/45">DUN</dt>
-                <dd className="font-mono font-semibold text-white/85 tabular-nums truncate">
+                <dd className="font-mono font-semibold text-white/85 tabular-nums whitespace-nowrap">
                   {dun}
                 </dd>
               </div>
-              <div className="flex flex-col gap-0.5 min-w-0">
+              <div className="flex flex-col gap-0.5">
                 <dt className="font-bold tracking-[0.18em] uppercase text-white/45">MAPA</dt>
-                <dd className="font-mono font-semibold text-white/85 truncate">
+                <dd className="font-mono font-semibold text-white/85 whitespace-nowrap">
                   {mapa}
                 </dd>
               </div>
             </dl>
 
-            <div className="flex items-center justify-between gap-3 flex-wrap">
+            <div className="flex items-center gap-3 flex-wrap">
               <span className="text-[11px] md:text-[12px] font-semibold tracking-wider uppercase text-white/60 tabular-nums">
                 {vol}
               </span>
-              <a
-                href="/lamina-comercial.pdf"
-                download
-                className="inline-flex items-center gap-1.5 text-[11px] md:text-[12px] font-bold tracking-[0.18em] uppercase text-white hover:text-[#ffd36a] transition-colors group"
-              >
-                <Download size={13} strokeWidth={2.6} />
-                Ficha completa (PDF)
-                <ArrowRight
-                  size={13}
-                  strokeWidth={2.6}
-                  className="transition-transform group-hover:translate-x-0.5"
-                />
-              </a>
             </div>
           </div>
         </div>

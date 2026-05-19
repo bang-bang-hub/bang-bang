@@ -44,10 +44,15 @@ function KpiCard({ icon, value, label }: KpiProps) {
   )
 }
 
-export function OndeComprarSection({ pdvs }: OndeComprarSectionProps) {
-  const totalPdvs = pdvs.length
-  const cities = new Set(pdvs.map((p) => `${p.cidade}|${p.uf}`)).size
-  const states = new Set(pdvs.map((p) => p.uf)).size
+// KPIs sobrescritos manualmente a partir da planilha real de vendas
+// (Clientes Bang Bang — todo o periodo, fechamento 2026-05-19).
+// Mapa abaixo continua usando pdvs.json ate o pipeline ser refeito.
+const KPI_OVERRIDE = { pdvs: 416, cities: 67, states: 10 }
+
+export function OndeComprarSection({ pdvs: _pdvs }: OndeComprarSectionProps) {
+  const totalPdvs = KPI_OVERRIDE.pdvs
+  const cities = KPI_OVERRIDE.cities
+  const states = KPI_OVERRIDE.states
 
   return (
     <SectionWrapper id="quero-bang-bang" bg="light" py="lg">
