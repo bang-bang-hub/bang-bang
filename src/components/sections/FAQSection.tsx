@@ -139,7 +139,7 @@ export async function FAQSection() {
             </h2>
 
             <p className="text-[#4A2C1A]/70 text-base md:text-lg max-w-xl">
-              Respostas diretas pra quem decide. Se faltar algo, fala com a gente — responde no mesmo dia útil.
+              Respostas diretas pra quem decide. Se faltar algo, fala com a gente, responde no mesmo dia útil.
             </p>
           </div>
 

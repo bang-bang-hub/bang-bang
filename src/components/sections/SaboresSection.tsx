@@ -65,7 +65,7 @@ const PRODUCTS: Product[] = [
       "Cítrico, refrescante, vibrante. Tropical em cada lata, sem preparo.",
     tagline: "O brasileiro que virou portátil.",
     longDescription:
-      "Vodka, três limões e zero esforço. A caipirinha que cabia no bar agora cabe na sua mochila — mesma vibe tropical, sem coqueteleira, sem dor de cabeça.",
+      "Vodka, três limões e zero esforço. A caipirinha que cabia no bar agora cabe na sua mochila, mesma vibe tropical, sem coqueteleira, sem dor de cabeça.",
     notes: ["Cítrico marcante", "Lima·tahiti·siciliano", "Refrescante", "Pra dia de praia"],
     vol: "473 ml · 5,5% vol",
     ean: "7908733208102",
@@ -84,7 +84,7 @@ const PRODUCTS: Product[] = [
       "Gengibre marcante, vodka e lima. Sofisticação pronta pra gelar.",
     tagline: "Sofisticação sem firula.",
     longDescription:
-      "Gengibre puxado, vodka premium, toque cítrico de lima. O drink que pedia bartender agora é só abrir e servir — mantendo o caráter que você espera de um Mule de verdade.",
+      "Gengibre puxado, vodka premium, toque cítrico de lima. O drink que pedia bartender agora é só abrir e servir, mantendo o caráter que você espera de um Mule de verdade.",
     notes: ["Gengibre acentuado", "Vodka premium", "Lima fresca", "Pra noite que começa cedo"],
     vol: "473 ml · 5,5% vol",
     ean: "7908733208096",
@@ -103,7 +103,7 @@ const PRODUCTS: Product[] = [
       "Baunilha e toque cítrico. Aperitivo pra quem tem estilo.",
     tagline: "Aperitivo de quem entende.",
     longDescription:
-      "Aromático, levemente amargo, com baunilha e toque cítrico. O Spritz que abria a noite no rooftop italiano agora vai com você do happy hour ao after — sem perder a postura.",
+      "Aromático, levemente amargo, com baunilha e toque cítrico. O Spritz que abria a noite no rooftop italiano agora vai com você do happy hour ao after, sem perder a postura.",
     notes: ["Baunilha sutil", "Toque cítrico", "Aperitivo amargo", "Pra rooftop e brunch"],
     vol: "473 ml · 5,5% vol",
     ean: "7908733208119",
@@ -268,7 +268,7 @@ function SaboresPinned() {
             eyebrow="Catálogo"
             title="Cada lata,"
             highlight="uma atitude."
-            subtitle="Rola devagar — cada sabor abre na sua vez."
+            subtitle="Rola devagar, cada sabor abre na sua vez."
             align="center"
           />
           <SaboresInteractiveWithIndex
@@ -734,7 +734,7 @@ function ActiveSaborCard({ product }: { product: Product }) {
             {tagline}
           </p>
 
-          <p className="text-white/80 text-[13px] md:text-[14px] leading-snug max-w-[42ch] line-clamp-3">
+          <p className="text-white/80 text-[13px] md:text-[14px] leading-snug max-w-[42ch]">
             {longDescription}
           </p>
 

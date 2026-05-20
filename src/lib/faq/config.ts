@@ -21,7 +21,7 @@ export const DEFAULT_FAQ: FAQItem[] = [
     position: 0,
     question: "Qual o pedido mínimo pra fechar distribuição?",
     answer:
-      "Depende da região e do plano de penetração combinado. Nossa equipe comercial monta a proposta com você caso a caso — sem letra miúda. Fala no WhatsApp comercial e a gente alinha.",
+      "Depende da região e do plano de penetração combinado. Nossa equipe comercial monta a proposta com você caso a caso, sem letra miúda. Fala no WhatsApp comercial e a gente alinha.",
   },
   {
     id: "item-2",
@@ -35,7 +35,7 @@ export const DEFAULT_FAQ: FAQItem[] = [
     position: 2,
     question: "Qual a margem do distribuidor?",
     answer:
-      "Tabela dedicada por volume, com preço sugerido pro PDV que protege margem em toda a cadeia. Condições fechadas em reunião comercial — não publicamos no site.",
+      "Tabela dedicada por volume, com preço sugerido pro PDV que protege margem em toda a cadeia. Condições fechadas em reunião comercial, não publicamos no site.",
   },
   {
     id: "item-4",
