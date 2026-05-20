@@ -3,6 +3,7 @@
 import { MessageCircle, ArrowRight } from "lucide-react"
 import { Container } from "@/components/shared/Container"
 import { SectionWrapper } from "@/components/shared/SectionWrapper"
+import { WhatsAppIcon } from "@/components/shared/icons/SocialIcons"
 import { useContacts } from "@/lib/contacts/useContacts"
 import { trackClick } from "@/lib/contacts/clicks"
 
@@ -114,6 +115,7 @@ export function CTASection() {
                 onClick={() => trackClick("distribuidor")}
                 className="inline-flex items-center justify-center gap-2.5 px-6 h-12 rounded-lg font-black text-sm tracking-[0.12em] uppercase bg-[#E87A1E] text-white shadow-[0_12px_32px_-8px_rgba(232,122,30,0.65)] hover:-translate-y-0.5 hover:bg-[#C4650F] hover:shadow-[0_16px_40px_-10px_rgba(232,122,30,0.85)] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ffd36a] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1f0d08] shrink-0"
               >
+                <WhatsAppIcon size={22} />
                 Quero Distribuir
                 <ArrowRight size={14} strokeWidth={2.6} />
               </a>

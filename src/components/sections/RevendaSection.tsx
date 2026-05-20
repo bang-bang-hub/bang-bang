@@ -5,10 +5,10 @@ import {
   Shield,
   Award,
   Megaphone,
-  MessageCircle,
   Boxes,
 } from "lucide-react"
 import { Button } from "@/components/shared/Button"
+import { WhatsAppIcon } from "@/components/shared/icons/SocialIcons"
 import { Container } from "@/components/shared/Container"
 import { SectionWrapper } from "@/components/shared/SectionWrapper"
 import { SectionTitle } from "@/components/shared/SectionTitle"
@@ -185,7 +185,7 @@ export function RevendaSection() {
           eyebrow="Pra distribuidores"
           title="Bang Bang"
           highlight="no seu portfólio."
-          subtitle="Categoria em alta, marca consolidada, território exclusivo. Não é só mais um SKU — é giro garantido."
+          subtitle="Categoria em alta, marca consolidada, território exclusivo. Não é só mais um SKU: é giro garantido."
           align="center"
         />
 
@@ -200,7 +200,7 @@ export function RevendaSection() {
             variant="whatsapp"
             size="md"
             href={distribuidorHref}
-            icon={<MessageCircle size={18} />}
+            icon={<WhatsAppIcon size={22} />}
             onClick={() => trackClick("distribuidor")}
           >
             Quero Distribuir

@@ -61,7 +61,7 @@ export function OndeComprarSection({ pdvs: _pdvs }: OndeComprarSectionProps) {
           eyebrow="Capilaridade"
           title="Onde a Bang Bang"
           highlight="já tá."
-          subtitle="Em expansão acelerada por todo o Brasil — e a próxima cidade pode ser a sua."
+          subtitle="Em expansão acelerada por todo o Brasil, e a próxima cidade pode ser a sua."
           align="center"
         />
 

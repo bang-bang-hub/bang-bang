@@ -323,7 +323,7 @@ export function HeroSection() {
         </h1>
 
         <p className="text-white text-base sm:text-lg max-w-[42ch] leading-relaxed mb-7 [text-shadow:0_2px_10px_rgba(0,0,0,0.45)] lg:[text-shadow:none] lg:text-white/85">
-          Quatro RTDs em lata de 473 ml. Categoria em alta no Brasil — e a Bang Bang não para de crescer.
+          Quatro RTDs em lata de 473 ml. Categoria em alta no Brasil, e a Bang Bang não para de crescer.
         </p>
 
         <div className="flex flex-col gap-3 items-start pointer-events-auto">
@@ -336,7 +336,7 @@ export function HeroSection() {
               onClick={() => trackClick("distribuidor")}
               className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-lg font-black text-sm tracking-[0.12em] uppercase bg-[#E87A1E] text-white shadow-[0_12px_32px_-8px_rgba(232,122,30,0.65)] hover:-translate-y-0.5 hover:bg-[#C4650F] hover:shadow-[0_16px_40px_-10px_rgba(232,122,30,0.85)] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ffd36a] focus-visible:ring-offset-2 focus-visible:ring-offset-[#2a1410]"
             >
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
                 <path d="M12 2C6.486 2 2 6.486 2 12c0 1.756.452 3.475 1.314 4.997L2 22l5.122-1.286A9.95 9.95 0 0 0 12 22c5.514 0 10-4.486 10-10S17.514 2 12 2Zm0 18a7.96 7.96 0 0 1-4.114-1.142l-.295-.176-3.04.763.78-2.96-.193-.305A7.964 7.964 0 0 1 4 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8Zm4.36-5.97c-.241-.121-1.426-.703-1.647-.783-.221-.08-.382-.121-.542.121-.161.241-.621.783-.762.943-.141.161-.281.181-.522.06-.241-.12-1.018-.375-1.939-1.197-.717-.64-1.201-1.43-1.342-1.671-.141-.241-.015-.371.106-.491.109-.108.241-.281.362-.422.121-.141.161-.241.241-.402.08-.161.04-.302-.02-.422-.06-.121-.542-1.305-.742-1.787-.196-.469-.394-.405-.542-.412-.141-.007-.302-.009-.462-.009a.886.886 0 0 0-.642.302c-.221.241-.842.823-.842 2.007 0 1.184.862 2.327.983 2.488.121.161 1.696 2.59 4.107 3.632.574.248 1.022.396 1.371.508.576.183 1.1.157 1.514.095.462-.069 1.426-.583 1.627-1.146.201-.563.201-1.045.141-1.146-.06-.101-.221-.161-.462-.282Z"/>
               </svg>
               Quero Distribuir
