@@ -1,5 +1,6 @@
 import { Header } from "@/components/shared/Header"
 import { Footer } from "@/components/shared/Footer"
+import { AgeGate } from "@/components/shared/AgeGate"
 import { HeroSection } from "@/components/sections/HeroSection"
 import { MarqueeBanner } from "@/components/sections/MarqueeBanner"
 import { SaboresSection } from "@/components/sections/SaboresSection"
@@ -15,8 +16,10 @@ export default async function Home() {
 
   return (
     <>
-      <Header />
-      <main>
+      <AgeGate />
+      <div data-site-content>
+        <Header />
+        <main>
         {/* 01 — Hero: impacto visual imediato */}
         <HeroSection />
 
@@ -43,8 +46,9 @@ export default async function Home() {
 
         {/* 08 — CTA: conversão final B2B (3 caminhos) */}
         <CTASection />
-      </main>
-      <Footer />
+        </main>
+        <Footer />
+      </div>
     </>
   )
 }

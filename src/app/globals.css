@@ -432,3 +432,12 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Age gate — body class toggled por AgeGate quando modal aberto.
+   Blur direto no wrapper [data-site-content] que envolve Header/main/Footer.
+   Modal fica fora do wrapper, sem ser afetado pelo filter. */
+body.age-gate-open [data-site-content] {
+  filter: blur(28px) saturate(50%) !important;
+  pointer-events: none !important;
+  user-select: none !important;
+}
