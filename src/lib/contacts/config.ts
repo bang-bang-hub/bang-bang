@@ -22,15 +22,18 @@ export interface ContactsConfig {
   linkCidade: string
 }
 
-// Numero oficial Bang Bang Brasil — hardcoded como fallback pra eliminar
+// Numeros oficiais Bang Bang Brasil — hardcoded como fallback pra eliminar
 // dependencia de env var no Azure. NEXT_PUBLIC_WA_* ainda sobrescreve se setado.
-const BB_WA = "5531998242682"
+// - SAC: atendimento ao consumidor (apenas texto clicavel no Footer).
+// - COMERCIAL: leads B2B + demanda B2C (distribuidor, eventos, cidade).
+export const BB_WA_SAC = "5531998242682"
+export const BB_WA_COMERCIAL = "5531995093081"
 
 export const DEFAULT_CONTACTS: ContactsConfig = {
-  whatsappRevenda: BB_WA,
-  whatsappDistribuidor: BB_WA,
-  whatsappEventos: BB_WA,
-  whatsappCidade: BB_WA,
+  whatsappRevenda: BB_WA_COMERCIAL,
+  whatsappDistribuidor: BB_WA_COMERCIAL,
+  whatsappEventos: BB_WA_COMERCIAL,
+  whatsappCidade: BB_WA_COMERCIAL,
   linkRevenda: "",
   linkDistribuidor: "",
   linkEventos: "",

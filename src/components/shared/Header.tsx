@@ -7,6 +7,7 @@ import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/shared/Button"
 import { Logo } from "@/components/shared/Logo"
+import { WhatsAppIcon } from "@/components/shared/icons/SocialIcons"
 import { useContacts } from "@/lib/contacts/useContacts"
 import { trackClick } from "@/lib/contacts/clicks"
 
@@ -101,6 +102,7 @@ export function Header() {
               variant="primary"
               size="sm"
               href={distribuidorHref}
+              icon={<WhatsAppIcon size={20} />}
               onClick={() => trackClick("distribuidor")}
             >
               Quero Distribuir
@@ -147,6 +149,7 @@ export function Header() {
             variant="primary"
             size="lg"
             href={distribuidorHref}
+            icon={<WhatsAppIcon size={22} />}
             onClick={() => {
               trackClick("distribuidor")
               closeMobileMenu()
