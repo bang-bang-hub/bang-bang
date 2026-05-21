@@ -12,10 +12,11 @@ import { Container } from "@/components/shared/Container"
 import { SectionWrapper } from "@/components/shared/SectionWrapper"
 import { SectionTitle } from "@/components/shared/SectionTitle"
 import { cn } from "@/lib/utils"
-import caipiImg from "@/../public/images/latas/caipi.png"
-import muleImg from "@/../public/images/latas/mule.png"
-import spritzImg from "@/../public/images/latas/spritz.png"
-import bangImg from "@/../public/images/latas/bang.png"
+import { GRAIN_URL } from "@/lib/grain"
+import caipiImg from "@/../public/images/latas/caipi.webp"
+import muleImg from "@/../public/images/latas/mule.webp"
+import spritzImg from "@/../public/images/latas/spritz.webp"
+import bangImg from "@/../public/images/latas/bang.webp"
 
 // SSR-safe media query hook — same pattern used in the heros.
 function useMediaQuery(query: string): boolean {
@@ -136,9 +137,6 @@ const PRODUCTS: Product[] = [
   },
 ]
 
-const GRAIN_URL =
-  "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.35 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>\")"
-
 export function SaboresSection() {
   const isLg = useMediaQuery("(min-width: 1024px)")
   const reduceMotion = useMediaQuery("(prefers-reduced-motion: reduce)")
@@ -180,19 +178,20 @@ function SaboresPinned() {
   const [activeIdx, setActiveIdx] = useState(0)
   const wrapperRef = useRef<HTMLDivElement>(null)
 
-  // Scroll listener — clamps progress to [0, 1] over the wrapper's pin range
-  // and maps it to one of N flavor slots.
+  // Scroll listener — only attached while the pin wrapper intersects the
+  // viewport. An IntersectionObserver gates it so the global scroll handler
+  // doesn't run during the rest of the page scroll.
   useEffect(() => {
+    const wrapper = wrapperRef.current
+    if (!wrapper) return
     let rafId: number | null = null
+    let attached = false
 
     const update = () => {
-      const wrapper = wrapperRef.current
-      if (!wrapper) return
       const rect = wrapper.getBoundingClientRect()
       const vh = window.innerHeight
       const scrollBudget = wrapper.offsetHeight - vh
 
-      // outside the pin range — let the index sit at the edge values
       if (rect.top >= 0) {
         setActiveIdx((prev) => (prev !== 0 ? 0 : prev))
         return
@@ -206,8 +205,6 @@ function SaboresPinned() {
 
       const scrolled = -rect.top
       const progress = Math.max(0, Math.min(1, scrolled / scrollBudget))
-      // Each flavor occupies an equal slice of the timeline. The clamp keeps
-      // the very last frame from rolling into an out-of-bounds index.
       const idx = Math.min(
         PRODUCTS.length - 1,
         Math.floor(progress * PRODUCTS.length),
@@ -223,11 +220,35 @@ function SaboresPinned() {
       })
     }
 
-    window.addEventListener("scroll", onScroll, { passive: true })
-    update()
-    return () => {
+    const attach = () => {
+      if (attached) return
+      window.addEventListener("scroll", onScroll, { passive: true })
+      attached = true
+      update()
+    }
+
+    const detach = () => {
+      if (!attached) return
       window.removeEventListener("scroll", onScroll)
-      if (rafId !== null) cancelAnimationFrame(rafId)
+      attached = false
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId)
+        rafId = null
+      }
+    }
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) attach()
+        else detach()
+      },
+      { rootMargin: "100px 0px" },
+    )
+    io.observe(wrapper)
+
+    return () => {
+      io.disconnect()
+      detach()
     }
   }, [])
 
@@ -707,7 +728,6 @@ function ActiveSaborCard({ product }: { product: Product }) {
               fill
               sizes="(max-width: 640px) 75vw, (max-width: 1024px) 60vw, 30vw"
               className="object-contain object-bottom drop-shadow-[0_36px_36px_rgba(0,0,0,0.55)]"
-              priority
             />
           </div>
         </div>

@@ -3,11 +3,10 @@ import { Container } from "@/components/shared/Container"
 import { SectionWrapper } from "@/components/shared/SectionWrapper"
 import { FAQAccordion } from "@/components/sections/FAQAccordion"
 import { getFaqItems } from "@/lib/faq/server"
-import caipiImg from "@/../public/images/latas/caipi.png"
-import bangImg from "@/../public/images/latas/bang.png"
+import caipiImg from "@/../public/images/latas/caipi.webp"
+import bangImg from "@/../public/images/latas/bang.webp"
+import { GRAIN_URL } from "@/lib/grain"
 
-const GRAIN_URL =
-  "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.35 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>\")"
 
 function BoomStar({
   size = 24,

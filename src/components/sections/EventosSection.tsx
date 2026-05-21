@@ -1,13 +1,11 @@
-"use client"
-
 import Image, { type StaticImageData } from "next/image"
 import { CalendarDays, Download } from "lucide-react"
 import { Button } from "@/components/shared/Button"
 import { Container } from "@/components/shared/Container"
 import { SectionWrapper } from "@/components/shared/SectionWrapper"
 import { HeroSparks } from "@/components/shared/HeroSparks"
-import { useContacts } from "@/lib/contacts/useContacts"
-import { trackClick } from "@/lib/contacts/clicks"
+import { getContacts } from "@/lib/contacts/useContacts"
+import { GRAIN_URL } from "@/lib/grain"
 import evento01 from "@/../public/images/eventos/evento-01.webp"
 import evento02 from "@/../public/images/eventos/evento-02.webp"
 import evento03 from "@/../public/images/eventos/evento-03.webp"
@@ -17,8 +15,6 @@ import evento06 from "@/../public/images/eventos/evento-06.webp"
 import evento07 from "@/../public/images/eventos/evento-07.webp"
 import evento08 from "@/../public/images/eventos/evento-08.webp"
 
-const GRAIN_URL =
-  "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.35 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>\")"
 
 type Slot =
   | {
@@ -132,7 +128,7 @@ function TextBlock({ title, description }: { title: string; description: string 
 }
 
 export function EventosSection() {
-  const { urls } = useContacts()
+  const { urls } = getContacts()
   const eventosHref = urls.eventos || "#contato"
 
   return (
@@ -232,7 +228,6 @@ export function EventosSection() {
             variant="primary"
             size="md"
             icon={<CalendarDays size={18} strokeWidth={2.2} />}
-            onClick={() => trackClick("eventos")}
           >
             Quero no meu Evento
           </Button>

@@ -2,12 +2,13 @@
 
 import Image, { type StaticImageData } from "next/image"
 import { useEffect, useMemo, useRef, useSyncExternalStore } from "react"
-import caipiImg from "@/../public/images/latas/caipi.png"
-import muleImg from "@/../public/images/latas/mule.png"
-import spritzImg from "@/../public/images/latas/spritz.png"
-import bangImg from "@/../public/images/latas/bang.png"
+import caipiImg from "@/../public/images/latas/caipi.webp"
+import muleImg from "@/../public/images/latas/mule.webp"
+import spritzImg from "@/../public/images/latas/spritz.webp"
+import bangImg from "@/../public/images/latas/bang.webp"
 import { useContacts } from "@/lib/contacts/useContacts"
 import { trackClick } from "@/lib/contacts/clicks"
+import { GRAIN_URL } from "@/lib/grain"
 
 // Media query hook that's SSR-safe via useSyncExternalStore.
 // Server snapshot is always false so the initial HTML renders without hero FX,
@@ -172,8 +173,6 @@ export function HeroSection() {
       banner.style.setProperty("--my", `${ry * 100}%`)
     }
 
-    window.addEventListener("pointermove", handleMove)
-
     const loop = () => {
       curX += (targetX - curX) * 0.08
       curY += (targetY - curY) * 0.08
@@ -234,12 +233,33 @@ export function HeroSection() {
 
       rafId = requestAnimationFrame(loop)
     }
-    rafId = requestAnimationFrame(loop)
 
-    return () => {
+    const start = () => {
+      if (rafId) return
+      window.addEventListener("pointermove", handleMove)
+      rafId = requestAnimationFrame(loop)
+    }
+
+    const stop = () => {
+      if (!rafId) return
       window.removeEventListener("pointermove", handleMove)
       cancelAnimationFrame(rafId)
+      rafId = 0
       banner.classList.remove("hero--cursor-active")
+    }
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) start()
+        else stop()
+      },
+      { threshold: 0 },
+    )
+    io.observe(banner)
+
+    return () => {
+      io.disconnect()
+      stop()
     }
   }, [fxEnabled])
 
@@ -258,10 +278,7 @@ export function HeroSection() {
       <div
         aria-hidden="true"
         className="absolute inset-0 pointer-events-none mix-blend-overlay opacity-[0.18]"
-        style={{
-          backgroundImage:
-            "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.35 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>\")",
-        }}
+        style={{ backgroundImage: GRAIN_URL }}
       />
 
       {/* Sparks — only when fx enabled */}
@@ -398,7 +415,7 @@ export function HeroSection() {
                   filter:
                     "drop-shadow(0 22px 28px rgba(0,0,0,0.5)) drop-shadow(0 0 32px rgba(255,180,110,0.15))",
                 }}
-                priority
+                loading="lazy"
                 sizes={`${c.widthVw}vw`}
               />
             </div>
@@ -451,8 +468,9 @@ export function HeroSection() {
                     "drop-shadow(0 30px 30px rgba(0,0,0,0.45)) drop-shadow(0 0 0 rgba(255,255,255,0))",
                   transition: "filter 0.25s ease",
                 }}
-                priority={i < 2}
+                priority={i === 1}
                 sizes="(max-width: 1024px) 50vw, 20vw"
+                fetchPriority={i === 1 ? "high" : "low"}
               />
             </div>
             <div

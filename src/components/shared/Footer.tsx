@@ -1,14 +1,10 @@
-"use client"
-
 import { Button } from "@/components/shared/Button"
 import { Logo } from "@/components/shared/Logo"
 import { InstagramIcon, WhatsAppIcon } from "@/components/shared/icons/SocialIcons"
-import { useContacts, whatsappUrl } from "@/lib/contacts/useContacts"
-import { trackClick } from "@/lib/contacts/clicks"
+import { getContacts, whatsappUrl } from "@/lib/contacts/useContacts"
 import { BB_WA_SAC } from "@/lib/contacts/config"
+import { GRAIN_URL } from "@/lib/grain"
 
-const GRAIN_URL =
-  "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.35 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>\")"
 
 const navLinks = [
   { label: "Sabores",      href: "/#sabores" },
@@ -17,7 +13,7 @@ const navLinks = [
 ]
 
 export function Footer() {
-  const { urls } = useContacts()
+  const { urls } = getContacts()
   const distribuidorHref = urls.distribuidor || "#contato"
   // SAC isolado do canal distribuidor — atendimento ao consumidor, numero proprio.
   const sacHref = whatsappUrl(BB_WA_SAC)
@@ -125,7 +121,6 @@ export function Footer() {
               size="sm"
               href={distribuidorHref}
               icon={<WhatsAppIcon size={20} />}
-              onClick={() => trackClick("distribuidor")}
               className="mt-2 self-start"
             >
               Quero Distribuir

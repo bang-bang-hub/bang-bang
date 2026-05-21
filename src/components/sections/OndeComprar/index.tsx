@@ -1,15 +1,8 @@
-"use client"
-
 import { MapPin, Building2, Globe2 } from "lucide-react"
 import { Container } from "@/components/shared/Container"
 import { SectionWrapper } from "@/components/shared/SectionWrapper"
 import { SectionTitle } from "@/components/shared/SectionTitle"
 import { WishlistForm } from "@/components/onde-encontrar/WishlistForm"
-import type { PDV } from "@/lib/types/pdv"
-
-interface OndeComprarSectionProps {
-  pdvs: PDV[]
-}
 
 interface KpiProps {
   icon: React.ReactNode
@@ -49,7 +42,7 @@ function KpiCard({ icon, value, label }: KpiProps) {
 // Mapa abaixo continua usando pdvs.json ate o pipeline ser refeito.
 const KPI_OVERRIDE = { pdvs: 416, cities: 67, states: 10 }
 
-export function OndeComprarSection({ pdvs: _pdvs }: OndeComprarSectionProps) {
+export function OndeComprarSection() {
   const totalPdvs = KPI_OVERRIDE.pdvs
   const cities = KPI_OVERRIDE.cities
   const states = KPI_OVERRIDE.states

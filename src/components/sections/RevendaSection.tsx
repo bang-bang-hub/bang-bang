@@ -1,5 +1,3 @@
-"use client"
-
 import {
   TrendingUp,
   Shield,
@@ -13,8 +11,7 @@ import { Container } from "@/components/shared/Container"
 import { SectionWrapper } from "@/components/shared/SectionWrapper"
 import { SectionTitle } from "@/components/shared/SectionTitle"
 import { ParceirosBlock } from "./ParceirosSection"
-import { useContacts } from "@/lib/contacts/useContacts"
-import { trackClick } from "@/lib/contacts/clicks"
+import { getContacts } from "@/lib/contacts/useContacts"
 
 interface FeatureCardProps {
   icon: React.ReactNode
@@ -175,7 +172,7 @@ function LogisticaBlock() {
 }
 
 export function RevendaSection() {
-  const { urls } = useContacts()
+  const { urls } = getContacts()
   const distribuidorHref = urls.distribuidor || "#contato"
 
   return (
@@ -201,7 +198,6 @@ export function RevendaSection() {
             size="md"
             href={distribuidorHref}
             icon={<WhatsAppIcon size={22} />}
-            onClick={() => trackClick("distribuidor")}
           >
             Quero Distribuir
           </Button>

@@ -1,5 +1,3 @@
-"use client"
-
 import {
   DEFAULT_CONTACTS,
   MSG_REVENDA,
@@ -99,3 +97,7 @@ export function useContacts(): UseContactsApi {
 
   return { config, loading: false, urls, hasAnyConfigured }
 }
+
+// Server-safe alias — same body, no `use` prefix so React doesn't treat it
+// as a hook. Use this from Server Components to keep them on the server.
+export const getContacts = useContacts

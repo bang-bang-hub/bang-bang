@@ -9,11 +9,8 @@ import { EventosSection } from "@/components/sections/EventosSection"
 import { OndeComprarSection } from "@/components/sections/OndeComprar"
 import { FAQSection } from "@/components/sections/FAQSection"
 import { CTASection } from "@/components/sections/CTASection"
-import { getMergedPDVs } from "@/lib/pdvs/server"
 
-export default async function Home() {
-  const { pdvs } = await getMergedPDVs()
-
+export default function Home() {
   return (
     <>
       <AgeGate />
@@ -39,7 +36,7 @@ export default async function Home() {
 
         {/* 06 — Quero Bang Bang na minha cidade: KPIs de capilaridade +
             wishlist form (3 fields). Mapa completo é só admin (/dashboard). */}
-        <OndeComprarSection pdvs={pdvs} />
+        <OndeComprarSection />
 
         {/* 07 — FAQ: quebrar objeções B2B (ilha card branca dentro do cinza) */}
         <FAQSection />

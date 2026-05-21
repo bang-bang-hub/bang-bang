@@ -1,17 +1,13 @@
-"use client"
-
 import { MessageCircle, ArrowRight } from "lucide-react"
 import { Container } from "@/components/shared/Container"
 import { SectionWrapper } from "@/components/shared/SectionWrapper"
 import { WhatsAppIcon } from "@/components/shared/icons/SocialIcons"
-import { useContacts } from "@/lib/contacts/useContacts"
-import { trackClick } from "@/lib/contacts/clicks"
+import { getContacts } from "@/lib/contacts/useContacts"
+import { GRAIN_URL } from "@/lib/grain"
 
-const GRAIN_URL =
-  "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.35 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>\")"
 
 export function CTASection() {
-  const { urls } = useContacts()
+  const { urls } = getContacts()
   const distribuidorHref = urls.distribuidor || "#contato"
   const distribuidorIsExternal =
     distribuidorHref.startsWith("http") ||
@@ -112,7 +108,6 @@ export function CTASection() {
                 {...(distribuidorIsExternal
                   ? { target: "_blank", rel: "noopener noreferrer" as const }
                   : {})}
-                onClick={() => trackClick("distribuidor")}
                 className="inline-flex items-center justify-center gap-2.5 px-6 h-12 rounded-lg font-black text-sm tracking-[0.12em] uppercase bg-[#E87A1E] text-white shadow-[0_12px_32px_-8px_rgba(232,122,30,0.65)] hover:-translate-y-0.5 hover:bg-[#C4650F] hover:shadow-[0_16px_40px_-10px_rgba(232,122,30,0.85)] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ffd36a] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1f0d08] shrink-0"
               >
                 <WhatsAppIcon size={22} />
