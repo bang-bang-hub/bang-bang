@@ -3,9 +3,18 @@
 import { useEffect, useState } from "react"
 import { Logo } from "@/components/shared/Logo"
 import { GRAIN_URL } from "@/lib/grain"
+import caipiImg from "@/../public/images/latas/caipi.webp"
+import muleImg from "@/../public/images/latas/mule.webp"
+import spritzImg from "@/../public/images/latas/spritz.webp"
+import bangImg from "@/../public/images/latas/bang.webp"
 
 const COOKIE_NAME = "bb_age_ok"
 const TTL_DAYS = 7
+
+// Lata image URLs (build-time hashed paths). Pre-fetched while the modal
+// is open so the Hero/Sabores latas are already in the HTTP cache when the
+// user confirms age.
+const LATA_URLS = [caipiImg.src, muleImg.src, spritzImg.src, bangImg.src]
 
 
 function readCookie(name: string): string | null {
@@ -50,6 +59,20 @@ export function AgeGate() {
       document.body.style.overflow = prevOverflow
       document.body.classList.remove("age-gate-open")
     }
+  }, [open])
+
+  // Warm the HTTP cache with all 4 lata WebPs while the user reads the modal.
+  // By the time they tap "Sim, sou maior", the Hero/Sabores latas are already
+  // cached and paint instantly.
+  useEffect(() => {
+    if (!open) return
+    LATA_URLS.forEach((url) => {
+      const img = new Image()
+      // fetchPriority is supported in recent Chromium/Safari; harmless elsewhere.
+      ;(img as HTMLImageElement & { fetchPriority?: string }).fetchPriority = "high"
+      img.decoding = "async"
+      img.src = url
+    })
   }, [open])
 
   if (!mounted || !open) return null
