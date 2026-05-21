@@ -377,7 +377,7 @@ export function HeroSection() {
         aria-hidden="true"
         className="lg:hidden absolute inset-0 pointer-events-none z-[3] overflow-hidden"
       >
-        {MOBILE_CANS.map((c) => (
+        {MOBILE_CANS.map((c, i) => (
           <div
             key={c.key}
             className="absolute"
@@ -415,7 +415,8 @@ export function HeroSection() {
                   filter:
                     "drop-shadow(0 22px 28px rgba(0,0,0,0.5)) drop-shadow(0 0 32px rgba(255,180,110,0.15))",
                 }}
-                loading="lazy"
+                priority={i === 1}
+                fetchPriority={i === 1 ? "high" : "low"}
                 sizes={`${c.widthVw}vw`}
               />
             </div>
